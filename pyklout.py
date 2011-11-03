@@ -126,13 +126,13 @@ class Klout(object):
             msg = 'Invalida data: %s' % data
             raise KloutError(0, msg)
         else:
-            status = data.pop("status")
+            status = data.get("status")
             if status in ERROR_STATUS:
                 msg = ERROR_STATUS.get(status, "Unknow Error")
                 raise  KloutError(status, msg)
 
         if data.get('body', None):
-            status = data.pop("status")
+            status = data.get("status")
             msg = data['body']['error']
             raise  KloutError(status, msg)
 
