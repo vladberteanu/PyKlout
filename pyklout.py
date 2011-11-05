@@ -125,7 +125,7 @@ class Klout(object):
         except ValueError:
             if not data:
               msg = 'Empty response from Klout.'
-            else
+            else:
               msg = 'Invalid response: %s' % data
             raise KloutError(200, msg)
         else:
@@ -158,7 +158,7 @@ class Klout(object):
         url = '/1/klout.json'
 
         if not users:
-            raise KloutError(0, 'No Users')
+            raise KloutError(200, 'No topics returned.')
 
         if isinstance(users, (list, tuple)):
             users = ','.join(users)
