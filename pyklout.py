@@ -123,8 +123,11 @@ class Klout(object):
             msg = err.read() or ERROR_STATUS.get(err.code, err.message)
             raise KloutError(err.code, msg)
         except ValueError:
-            msg = 'Invalida data: %s' % data
-            raise KloutError(0, msg)
+            if not data:
+              msg = 'Empty response from Klout.'
+            else
+              msg = 'Invalid response: %s' % data
+            raise KloutError(200, msg)
         else:
             status = data.get("status")
             if status in ERROR_STATUS:
